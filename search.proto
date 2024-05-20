@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package search_v1;
+
+option go_package = "github.com/ceo-gazprom/rezensent-server/pkg/search_v1;search_v1";
+
+message SearchRequest {
+  string   query     = 1;
+  optional uint32 page = 2;
+}
+
+message SearchResponse {
+  repeated int32 results = 1;
+  uint32 current_page = 2;
+  uint32 count_pages = 3;
+}
+
+
+service SearchServiceRoutes {
+  rpc searchByQuery(SearchRequest) returns (SearchResponse) {}
+}
